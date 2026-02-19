@@ -1,0 +1,322 @@
+settings:
+  debug-mode: false
+  database:
+    type: SQLITE
+    mysql:
+      host: localhost
+      port: 3306
+      database: viperlevels
+      username: root
+      password: password
+      pool-size: 10
+  cache:
+    enabled: true
+    ttl-seconds: 300
+    cleanup-interval: 600
+  gui:
+    update-interval: 20
+    close-on-action: false
+
+messages:
+  prefix: '&8[&cViperLevels&8]&r '
+  no-permission: '&cNon hai il permesso per fare questo!'
+  player-not-found: '&cGiocatore non trovato!'
+  reload-success: '&aConfigurazione ricaricata con successo!'
+  
+  restriction:
+    item-use: '&cNon puoi usare questo oggetto! Requisiti: &e%requirements%'
+    block-break: '&cNon puoi rompere questo blocco! Requisiti: &e%requirements%'
+    block-place: '&cNon puoi piazzare questo blocco! Requisiti: &e%requirements%'
+    craft: '&cNon puoi craftare questo oggetto! Requisiti: &e%requirements%'
+    armor-equip: '&cNon puoi equipaggiare questa armatura! Requisiti: &e%requirements%'
+    enchant: '&cNon puoi incantare con questo livello! Requisiti: &e%requirements%'
+    consume: '&cNon puoi consumare questo! Requisiti: &e%requirements%'
+    mob-hit: '&cNon puoi attaccare questo mob! Requisiti: &e%requirements%'
+    dimension: '&cNon puoi entrare in questa dimensione! Requisiti: &e%requirements%'
+  
+  bypass:
+    added: '&aBypass aggiunto per &e%player%&a: &e%target%'
+    removed: '&cBypass rimosso per &e%player%&a: &e%target%'
+    list: '&aBypass attivi per &e%player%&a: &e%list%'
+    none: '&cNessun bypass attivo'
+  
+  check:
+    header: '&8&m----------&r &cControllo Requisiti &8&m----------'
+    player: '&7Giocatore: &e%player%'
+    target: '&7Target: &e%target%'
+    result-pass: '&a✓ Requisiti soddisfatti'
+    result-fail: '&c✗ Requisiti mancanti: &e%missing%'
+    footer: '&8&m--------------------------------'
+  
+  info:
+    header: '&8&m----------&r &cInfo Regola &8&m----------'
+    material: '&7Materiale: &e%material%'
+    actions: '&7Azioni: &e%actions%'
+    requirements: '&7Requisiti: &e%requirements%'
+    no-rules: '&cNessuna regola trovata per questo materiale'
+    footer: '&8&m--------------------------------'
+
+penalties:
+  item-use:
+    cancel-event: true
+    damage-item: false
+    damage-amount: 1
+  block-break:
+    cancel-event: true
+    damage-item: true
+    damage-amount: 5
+  block-place:
+    cancel-event: true
+    damage-item: false
+    damage-amount: 0
+  craft:
+    cancel-event: true
+    damage-item: false
+    damage-amount: 0
+  armor-equip:
+    cancel-event: true
+    damage-item: false
+    damage-amount: 0
+  enchant:
+    cancel-event: true
+    damage-item: false
+    damage-amount: 0
+  consume:
+    cancel-event: true
+    damage-item: false
+    damage-amount: 0
+  mob-hit:
+    cancel-event: true
+    damage-item: true
+    damage-amount: 2
+  dimension:
+    cancel-event: true
+    damage-item: false
+    damage-amount: 0
+
+rules:
+  items:
+    DIAMOND_SWORD:
+      actions: [USE, CRAFT]
+      requirements: 'MINING(50) AND SWORDS(30)'
+    NETHERITE_SWORD:
+      actions: [USE, CRAFT]
+      requirements: 'MINING(100) AND SWORDS(75)'
+    DIAMOND_PICKAXE:
+      actions: [USE, CRAFT]
+      requirements: 'MINING(40)'
+    NETHERITE_PICKAXE:
+      actions: [USE, CRAFT]
+      requirements: 'MINING(80)'
+    DIAMOND_AXE:
+      actions: [USE, CRAFT]
+      requirements: 'MINING(45) AND AXES(25)'
+    NETHERITE_AXE:
+      actions: [USE, CRAFT]
+      requirements: 'MINING(85) AND AXES(60)'
+    BOW:
+      actions: [USE, CRAFT]
+      requirements: 'ARCHERY(15)'
+    CROSSBOW:
+      actions: [USE, CRAFT]
+      requirements: 'CROSSBOWS(20)'
+    TRIDENT:
+      actions: [USE]
+      requirements: 'TRIDENTS(30)'
+    ELYTRA:
+      actions: [USE, EQUIP]
+      requirements: 'ACROBATICS(60)'
+    GOLDEN_APPLE:
+      actions: [USE, CRAFT]
+      requirements: 'MINING(25)'
+    ENCHANTED_GOLDEN_APPLE:
+      actions: [USE]
+      requirements: 'MINING(75)'
+    ENDER_PEARL:
+      actions: [USE]
+      requirements: 'ACROBATICS(30)'
+    ENDER_EYE:
+      actions: [USE]
+      requirements: 'MINING(50)'
+    TNT:
+      actions: [USE, PLACE]
+      requirements: 'EXCAVATION(40) OR MINING(40)'
+  
+  blocks:
+    DIAMOND_ORE:
+      actions: [BREAK]
+      requirements: 'MINING(30)'
+    DEEPSLATE_DIAMOND_ORE:
+      actions: [BREAK]
+      requirements: 'MINING(35)'
+    EMERALD_ORE:
+      actions: [BREAK]
+      requirements: 'MINING(40)'
+    DEEPSLATE_EMERALD_ORE:
+      actions: [BREAK]
+      requirements: 'MINING(45)'
+    ANCIENT_DEBRIS:
+      actions: [BREAK]
+      requirements: 'MINING(75)'
+    NETHER_QUARTZ_ORE:
+      actions: [BREAK]
+      requirements: 'MINING(20)'
+    OBSIDIAN:
+      actions: [BREAK, PLACE]
+      requirements: 'MINING(30)'
+    CRYING_OBSIDIAN:
+      actions: [BREAK, PLACE]
+      requirements: 'MINING(40)'
+    END_STONE:
+      actions: [BREAK]
+      requirements: 'MINING(50)'
+    PURPUR_BLOCK:
+      actions: [BREAK, PLACE]
+      requirements: 'MINING(50)'
+    BEACON:
+      actions: [BREAK, PLACE]
+      requirements: 'MINING(60)'
+    DRAGON_EGG:
+      actions: [BREAK]
+      requirements: 'MINING(90) AND SWORDS(90)'
+    NETHER_STAR:
+      actions: [USE]
+      requirements: 'SWORDS(80)'
+  
+  armor:
+    DIAMOND_HELMET:
+      actions: [EQUIP]
+      requirements: 'MINING(45)'
+    DIAMOND_CHESTPLATE:
+      actions: [EQUIP]
+      requirements: 'MINING(45)'
+    DIAMOND_LEGGINGS:
+      actions: [EQUIP]
+      requirements: 'MINING(45)'
+    DIAMOND_BOOTS:
+      actions: [EQUIP]
+      requirements: 'MINING(45)'
+    NETHERITE_HELMET:
+      actions: [EQUIP]
+      requirements: 'MINING(90)'
+    NETHERITE_CHESTPLATE:
+      actions: [EQUIP]
+      requirements: 'MINING(90)'
+    NETHERITE_LEGGINGS:
+      actions: [EQUIP]
+      requirements: 'MINING(90)'
+    NETHERITE_BOOTS:
+      actions: [EQUIP]
+      requirements: 'MINING(90)'
+    ELYTRA:
+      actions: [EQUIP]
+      requirements: 'ACROBATICS(60)'
+    TURTLE_HELMET:
+      actions: [EQUIP]
+      requirements: 'FISHING(30)'
+  
+  enchanting:
+    LEVEL_10:
+      requirements: 'REPAIR(15) OR MINING(20)'
+    LEVEL_20:
+      requirements: 'REPAIR(30) OR MINING(35)'
+    LEVEL_30:
+      requirements: 'REPAIR(50) OR MINING(50)'
+  
+  potions:
+    STRENGTH:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(30)'
+    REGENERATION:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(25)'
+    INSTANT_DAMAGE:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(50)'
+    POISON:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(20)'
+    SPEED:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(15)'
+    FIRE_RESISTANCE:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(35)'
+    WATER_BREATHING:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(30)'
+    INVISIBILITY:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(40)'
+    NIGHT_VISION:
+      actions: [CONSUME]
+      requirements: 'ALCHEMY(20)'
+  
+  food:
+    GOLDEN_APPLE:
+      actions: [CONSUME]
+      requirements: 'MINING(25)'
+    ENCHANTED_GOLDEN_APPLE:
+      actions: [CONSUME]
+      requirements: 'MINING(75)'
+    SUSPICIOUS_STEW:
+      actions: [CONSUME]
+      requirements: 'HERBALISM(30)'
+  
+  mobs:
+    ENDER_DRAGON:
+      actions: [HIT]
+      requirements: 'SWORDS(100) AND ARCHERY(100)'
+    WITHER:
+      actions: [HIT]
+      requirements: 'SWORDS(80) AND ARCHERY(80)'
+    WARDEN:
+      actions: [HIT]
+      requirements: 'SWORDS(90) OR ARCHERY(90)'
+    ELDER_GUARDIAN:
+      actions: [HIT]
+      requirements: 'SWORDS(60) OR ARCHERY(60) OR TRIDENTS(50)'
+    PIGLIN_BRUTE:
+      actions: [HIT]
+      requirements: 'SWORDS(50)'
+    RAVAGER:
+      actions: [HIT]
+      requirements: 'SWORDS(45) OR ARCHERY(45)'
+    EVOKER:
+      actions: [HIT]
+      requirements: 'SWORDS(40) OR ARCHERY(40)'
+  
+  dimensions:
+    NETHER:
+      requirements: 'MINING(15) OR EXCAVATION(15)'
+    THE_END:
+      requirements: 'MINING(50) AND (SWORDS(40) OR ARCHERY(40))'
+
+material-groups:
+  diamond-tools:
+    materials: [DIAMOND_SWORD, DIAMOND_PICKAXE, DIAMOND_AXE, DIAMOND_SHOVEL, DIAMOND_HOE]
+    requirements: 'MINING(40)'
+  
+  netherite-tools:
+    materials: [NETHERITE_SWORD, NETHERITE_PICKAXE, NETHERITE_AXE, NETHERITE_SHOVEL, NETHERITE_HOE]
+    requirements: 'MINING(80)'
+  
+  diamond-armor:
+    materials: [DIAMOND_HELMET, DIAMOND_CHESTPLATE, DIAMOND_LEGGINGS, DIAMOND_BOOTS]
+    requirements: 'MINING(45)'
+  
+  netherite-armor:
+    materials: [NETHERITE_HELMET, NETHERITE_CHESTPLATE, NETHERITE_LEGGINGS, NETHERITE_BOOTS]
+    requirements: 'MINING(90)'
+  
+  end-game-blocks:
+    materials: [END_STONE, PURPUR_BLOCK, CHORUS_PLANT, CHORUS_FLOWER, END_ROD]
+    requirements: 'MINING(50)'
+  
+  nether-ores:
+    materials: [NETHER_QUARTZ_ORE, NETHER_GOLD_ORE, ANCIENT_DEBRIS]
+    requirements: 'MINING(20)'
+  
+  precious-ores:
+    materials: [DIAMOND_ORE, DEEPSLATE_DIAMOND_ORE, EMERALD_ORE, DEEPSLATE_EMERALD_ORE]
+    requirements: 'MINING(30)'

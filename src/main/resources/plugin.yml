@@ -1,0 +1,62 @@
+name: ViperLevels
+version: '1.0.0'
+main: com.viperlevels.ViperLevels
+api-version: '1.21'
+author: YourName
+description: Advanced mcMMO-based item and block restrictions with GUI
+
+depend:
+  - mcMMO
+
+softdepend:
+  - ItemsAdder
+
+commands:
+  viperlevels:
+    description: Main command for ViperLevels
+    usage: /<command> [reload|check|info|bypass|gui|stats]
+    aliases: [vl, vlvl, vlevels]
+
+permissions:
+  viperlevels.admin:
+    description: Full admin access
+    default: op
+    children:
+      viperlevels.admin.reload: true
+      viperlevels.admin.check: true
+      viperlevels.admin.info: true
+      viperlevels.admin.bypass: true
+      viperlevels.admin.stats: true
+      viperlevels.gui.others: true
+  
+  viperlevels.admin.reload:
+    description: Reload configuration
+    default: op
+  
+  viperlevels.admin.check:
+    description: Check requirements for a player
+    default: op
+  
+  viperlevels.admin.info:
+    description: View info about a rule
+    default: op
+  
+  viperlevels.admin.bypass:
+    description: Manage bypasses
+    default: op
+  
+  viperlevels.admin.stats:
+    description: View plugin statistics
+    default: op
+  
+  viperlevels.gui:
+    description: Open GUI for yourself
+    default: true
+  
+  viperlevels.gui.others:
+    description: Open GUI for other players
+    default: op
+  
+  viperlevels.bypass.all:
+    description: Bypass all restrictions
+    default: false
